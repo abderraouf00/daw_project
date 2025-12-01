@@ -3,22 +3,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Certificate extends Model
+class Statistic extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'user_id', 'event_id', 'type', 'file_path', 'issued_at'
+        'event_id', 'total_submissions', 'accepted_submissions', 
+        'rejected_submissions', 'total_participants', 'total_countries',
+        'acceptance_rate', 'data'
     ];
 
     protected $casts = [
-        'issued_at' => 'datetime',
+        'data' => 'array',
+        'acceptance_rate' => 'decimal:2',
     ];
-
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'user_id');
-    }
 
     public function event()
     {
